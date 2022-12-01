@@ -1,6 +1,7 @@
 /* -*- C++ -*- */
 #include <stdlib.h>
 #include <algorithm>
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <map>
@@ -220,5 +221,6 @@ Expression_Tree::end (const std::string &traversal_order) const {
 /// Accept a visitor to perform some action on the Expression_Tree.
 void
 Expression_Tree::accept (Visitor &visitor) const {
+  std::cout << "accept()" << std::endl;
   root_->accept (visitor);
 }

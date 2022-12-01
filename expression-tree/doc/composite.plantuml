@@ -1,0 +1,28 @@
+
+@startuml composite
+    Component_Node <|-- Composit_Unary_Node
+    Component_Node <|-- Leaf_Node
+    Composit_Unary_Node <|-- Composit_Binary_Node 
+    Composit_Unary_Node <|-- Composite_Negate_Node 
+    Composit_Binary_Node <|-- Composite_Add_Node
+    Composit_Binary_Node <|-- Composite_Subtract_Node
+    Composit_Binary_Node <|-- Composite_Multiply_Node
+    Composit_Binary_Node <|-- Composite_Divide_Node
+
+    class Component_Node {
+        -int type_
+    }
+    class Leaf_Node {
+        -int item_
+    }
+    class Composit_Unary_Node {
+        -unique_ptr<Component_Node> right_ 
+    }
+    class Composit_Binary_Node {
+        -unique_ptr<Component_Node> left_
+    }
+    class Expression_Tree {
+        -Refcounter <Component_Node> root_
+    }
+    Expression_Tree::root_ o- Component_Node 
+@enduml

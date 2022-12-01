@@ -1,0 +1,35 @@
+@startuml command
+    User_Command_Impl <|-- Eval_Command 
+    User_Command_Impl <|-- Expr_Command 
+    User_Command_Impl <|-- Format_Command 
+    User_Command_Impl <|-- Print_Command 
+    User_Command_Impl <|-- Quit_Command 
+    User_Command_Impl <|-- Set_Command 
+    User_Command_Impl <|-- Macro_Command 
+    class Eval_Command {
+        -string format_
+    }
+    class Expr_Command {
+        -string expr_
+    }
+    class Format_Command {
+        -string format_ 
+    }
+    class Macro_Command {
+        -vector <User_Command> macro_commands_
+        -string expr_
+    }
+    class User_Command {
+        -Refcounter <User_Command_Impl> command_impl_
+    }
+    class Print_Command {
+        -string format_
+    }
+    abstract class User_Command_Impl {
+        -Tree_Context &tree_context_
+    }
+    User_Command_Impl::Tree_Context o- Tree_Context 
+    User_Command::command_impl_ o- User_Command_Impl 
+    Macro_Command o- User_Command
+
+@enduml
